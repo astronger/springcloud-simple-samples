@@ -2,10 +2,7 @@ package com.example.provider;
 
 import com.example.commons.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -34,4 +31,23 @@ public class HelloController {
         return user;
     }
 
+    @PutMapping("/user11")
+    public void updateUser1(User user1){
+        System.out.println(user1);
+    }
+
+    @PutMapping("/user12")
+    public void updateUser2(@RequestBody User user2){
+        System.out.println(user2);
+    }
+
+    @DeleteMapping("/user13")
+    public void deleteUser1(Integer id){
+        System.out.println(id);
+    }
+
+    @DeleteMapping("/user14/{id}")
+    public void deleteUser2(@PathVariable Integer id){
+        System.out.println(id);
+    }
 }
