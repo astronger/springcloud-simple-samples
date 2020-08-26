@@ -167,6 +167,37 @@ public class UserHelloController {
 
     }
 
+/**
+ * restTemplate put请求
+ * put接口传参其实和post一样，也是两种类型的参数，key/value 形式以及json形式
+ */
+    @GetMapping("/hello8")
+    public void hello8() {
+        MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+        map.add("username", "javajava");
+        map.add("password", "123456");
+        map.add("id", 666);
+        restTemplate.put("http://provider/user11",map);
+        User user = new User();
+        user.setId(98);
+        user.setUsername("zhangsan");
+        user.setPassword("123456");
+        restTemplate.put("http://provider/user12",user);
+    }
+
+
+    /**
+     * restTemplate delete请求
+     * 两种类型的参数，key/value形式以及PathVariable形式(参数放在路径中)
+     * delete中的参数传递，也支持map，实际上和get一样
+     */
+    @GetMapping("/hello9")
+    public void hello9() {
+        restTemplate.delete("http://provider/user13?id={1}",99);
+        restTemplate.delete("http://provider/user14/{1}",99);
+    }
+
+
 //    @GetMapping("/hello2")
 //    public String hello2()throws MalformedURLException{
 //        //Euerka Client提供的 DiscoveryClient 工具，DiscoveryClient查询到的服务列表是一个集合，因为服务在部署的过程中，可能是集群部署，集合中的每一项就是一个实例
