@@ -19,7 +19,7 @@ public class ConsumerApplication {
     }
 
     @Bean
-    @LoadBalanced //使用 Ribbon 来快速实现负载均衡，添加此注解开启负载均衡
+    @LoadBalanced //使用 Ribbon 来快速实现负载均衡，添加此注解开启负载均衡【客户端负载均衡】
     RestTemplate restTemplate(){
         return new RestTemplate();
     }
