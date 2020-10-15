@@ -13,6 +13,7 @@ public class UserController {
 
     @GetMapping("/user/{ids}")//假设 consumer 传过来的多个id格式是 1,2,3,4....
     public List<User> getUserByIds(@PathVariable String ids){
+        System.out.println(ids);
         String[] split = ids.split(",");
         List<User> user = new ArrayList<>();
         for(String s : split){

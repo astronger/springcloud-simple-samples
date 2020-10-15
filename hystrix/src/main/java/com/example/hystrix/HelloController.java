@@ -93,4 +93,28 @@ public class HelloController {
         ctx.close();
 
     }
+
+    /**
+     * 注解方式实现请求合并 测试方法
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
+    @GetMapping("/hello6")
+    public void hello6() throws ExecutionException, InterruptedException {
+        HystrixRequestContext ctx = HystrixRequestContext.initializeContext();
+        Future<User> q1 = userService.getUserById(99);
+        Future<User> q2 = userService.getUserById(98);
+        Future<User> q3 = userService.getUserById(97);
+        User u1 = q1.get();
+        User u2 = q2.get();
+        User u3 = q3.get();
+        System.out.println(u1);
+        System.out.println(u2);
+        System.out.println(u3);
+        Thread.sleep(2000);
+        Future<User> q4 = userService.getUserById(96);
+        User u4 = q4.get();
+        System.out.println(u4);
+        ctx.close();
+    }
 }
