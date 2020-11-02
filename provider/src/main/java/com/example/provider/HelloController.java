@@ -4,6 +4,11 @@ import com.example.commons.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
 
 @RestController
 public class HelloController {
@@ -49,5 +54,10 @@ public class HelloController {
     @DeleteMapping("/user14/{id}")
     public void deleteUser2(@PathVariable Integer id){
         System.out.println(id);
+    }
+
+    @GetMapping("/user3")
+    public void getUserByName(@RequestHeader String name) throws UnsupportedEncodingException {
+        System.out.println(URLDecoder.decode(name,"UTF-8"));
     }
 }
