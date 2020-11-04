@@ -1,11 +1,12 @@
 package com.example.openfeign;
 
+import com.example.api.UserService;
 import com.example.commons.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 @FeignClient("provider")
-public interface HelloService {
+public interface HelloService extends UserService {
 
     @GetMapping("/hello")
     String hello();//这里的方法名随意取 无需遵循java规则
