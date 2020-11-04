@@ -21,9 +21,9 @@ public class HelloController {
         user.setId(1);
         user.setUsername("java");
         user.setPassword("123");
-        User user1 = helloService.addUser(user);
-        System.out.println(user1);
-        helloService.deleteUserById(1);
+//        User user1 = helloService.addUser(user);
+//        System.out.println(user1);
+//        helloService.deleteUserById(1);
         helloService.getUserByName(URLEncoder.encode("那杯热咖啡","UTF-8"));
         return helloService.hello();
     }
