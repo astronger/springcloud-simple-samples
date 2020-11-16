@@ -1,2 +1,2 @@
 # springcloud-simple-sample
-Spring Clou 案例
+Spring Cloud 各组件案例
