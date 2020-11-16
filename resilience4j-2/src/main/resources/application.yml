@@ -1,0 +1,28 @@
+resilience4j:
+  retry:
+    retry-aspect-order: 399 # 表示Retry优先级(级别高于比如ratelimiter bulkhead timelimiter) 值越小 优先级 越高
+    backends:
+      retryA: # 设置组名
+        maxRetryAttempts: 5 # 对比之前的案例 重试的次数
+        waitDuration: 500 # 重试等待 500毫秒
+        exponentialBackoffMultiplier: 1.1 # 间隔乘数(场景: 正好每次间隔为1的时候卡顿 它就有用了 间隔就变了 例如 1 1.1 1.21....)
+        retryExceptions:
+          - java.lang.RuntimeException
+  circuitbreaker: # 和之前的maven类似
+    instances:
+      cba:
+        ringBufferSizeInHalfOpenState: 3
+        ringBufferSizeInClosedState:  5
+        waitInterval: 5000
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+    circuit-breaker-aspect-order: 398 # 表示 circuitbreaker 优先级，比上面的399小 (先执行当前断路器)
+spring:
+  application:
+    name: resilience4j
+server:
+  port: 5000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka

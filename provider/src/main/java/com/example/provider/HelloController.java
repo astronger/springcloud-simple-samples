@@ -2,6 +2,7 @@ package com.example.provider;
 
 import com.example.api.UserService;
 import com.example.commons.User;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,16 +10,23 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Date;
 
 
 @RestController
 public class HelloController implements UserService {
     @Value("${server.port}")
     Integer port;
-    @GetMapping("/hello")
+//    @GetMapping("/hello")
     @Override
+    @RateLimiter(name="rlA")
     public String hello(){
-        return "hello 你好"+port;
+        String s = "hello 你好"+port;
+//        System.out.println(s);
+      //  int i = 1 / 0;//此处测试resilience4j-2 【Retry、CircuitBreaker、RateLimiter】模块抛出异常
+
+        System.out.println(new Date()); //测试RateLimiter
+        return s;
     }
 
     @GetMapping("/hello2")
