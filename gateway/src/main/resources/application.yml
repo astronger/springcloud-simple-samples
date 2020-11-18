@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 开启自动代理
+          enabled: true
+          # 服务id为true --> 这样小写服务就可访问了
+          lower-case-service-id: true
+  application:
+    name: gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka
+
+#日志
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
