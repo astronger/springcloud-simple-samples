@@ -3,13 +3,15 @@ spring:
     gateway:
       routes:
         - id: java_route
-          uri: http://httpbin.org
-              # 时间断言
+#          uri: http://httpbin.org
+          uri: lb://provider
+          filters:
+            - AddRequestParameter=name,javaboy
           predicates:
-              - Before=2020-03-31T08:38:47+08:00
+#              - Before=2020-03-31T08:38:47+08:00
               - Method=GET
 #               - Path=/2020/0912/{segment}
-              - Query=name
+#              - Query=name
   application:
     name: gateway
 
