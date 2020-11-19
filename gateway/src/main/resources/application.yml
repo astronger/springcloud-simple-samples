@@ -1,12 +1,15 @@
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          # 开启自动代理
-          enabled: true
-          # 服务id为true --> 这样小写服务就可访问了
-          lower-case-service-id: true
+      routes:
+        - id: java_route
+          uri: http://httpbin.org
+              # 鏃堕棿鏂█
+          predicates:
+              - Before=2020-03-31T08:38:47+08:00
+              - Method=GET
+#               - Path=/2020/0912/{segment}
+              - Query=name
   application:
     name: gateway
 
@@ -15,7 +18,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:1111/eureka
 
-#日志
+#鏃ュ織
 logging:
   level:
     org.springframework.cloud.gateway: debug
