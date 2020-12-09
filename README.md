@@ -1,2 +1,2 @@
 # springcloud-simple-sample
-Spring Cloud 各组件案例
+Spring Cloud(H) , SpringCloud Alibaba
